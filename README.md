@@ -1,4 +1,4 @@
-# rmyc-brige
+# rmyc-bridge
 A python library aimed to bridge the RoboMaster EP and the specific controlling module of RaspberryPi.
 
 # Usage
