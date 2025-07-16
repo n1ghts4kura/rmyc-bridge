@@ -14,7 +14,7 @@ serial_conn = s.Serial(
     stopbits=s.STOPBITS_ONE,
     timeout=10,
 )
-# serial_conn_lock = Lock()
+serial_conn_lock = Lock()
 
 def read_serial() -> str:
     """
@@ -22,7 +22,7 @@ def read_serial() -> str:
     Returns:
         str: 读取到的数据
     """
-    # serial_conn_lock.acquire()
+    serial_conn_lock.acquire()
     data = ""
 
     try:
@@ -32,7 +32,7 @@ def read_serial() -> str:
     except UnicodeDecodeError as e:
         pass
 
-    # serial_conn_lock.release()
+    serial_conn_lock.release()
     return data
 
 def write_serial(data: str) -> bool:
@@ -44,7 +44,7 @@ def write_serial(data: str) -> bool:
         bool: 是否成功发送
     """
     result = False
-    # serial_conn_lock.acquire()
+    serial_conn_lock.acquire()
 
     try:
         serial_conn.write(data.encode('utf-8'))
@@ -52,7 +52,7 @@ def write_serial(data: str) -> bool:
     except s.SerialException as e:
         pass
     
-    # serial_conn_lock.release()
+    serial_conn_lock.release()
     return result
 
 __all__ = ["read_serial", "write_serial", ]
