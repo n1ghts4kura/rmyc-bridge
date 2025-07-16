@@ -11,7 +11,7 @@ ROBOT_MODES = (
     "free" # 自由模式
 )
 
-def cmd_set_robot_mode(mode: Literal["chassis_lead", "gimbal_lead", "free"] = "free") -> bool:
+def set_robot_mode(mode: Literal["chassis_lead", "gimbal_lead", "free"] = "free") -> bool:
     """
     设置机器人运动模式
     Args:
@@ -30,5 +30,5 @@ def cmd_set_robot_mode(mode: Literal["chassis_lead", "gimbal_lead", "free"] = "f
 
 __all__ = [
     "ROBOT_MODES",
-    "cmd_set_robot_mode",
+    "set_robot_mode",
 ]
