@@ -1,3 +1,7 @@
+# rmyc_bridge/__init__.py
+# @author n1ghts4kura
+# @date 2025-07-16
+
 import time
 import threading as t
 
