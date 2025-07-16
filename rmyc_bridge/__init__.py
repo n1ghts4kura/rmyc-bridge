@@ -9,7 +9,7 @@ def main_loop() -> None:
     while True:
         data = serial.read_serial()
 
-        
+
 
     sdk.exit_sdk_mode()
 
