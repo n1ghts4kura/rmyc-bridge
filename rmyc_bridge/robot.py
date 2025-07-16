@@ -44,7 +44,13 @@ def get_robot_mode() -> str:
     with robot_mode_lock:
         return robot_mode
 
-def set_robot_mode(mode: Literal["chassis_lead", "gimbal_lead", "free"] = "free") -> bool:
+def cmd_get_robot_mode() -> None:
+    """
+    发送 获取当前机器人模式 的指令。
+    """
+    serial.write_serial("robot mode ?;")
+
+def cmd_set_robot_mode(mode: Literal["chassis_lead", "gimbal_lead", "free"] = "free") -> bool:
     """
     设置机器人运动模式
     Args:
