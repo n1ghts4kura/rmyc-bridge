@@ -1,4 +1,10 @@
+# rmyc_bridge/serial.py
+# 用于UART串口通信的模块
+# @author: n1ghts4kura
+# @date: 2025-07-16
+
 import serial as s
+from threading import Lock
 
 serial_conn = s.Serial(
     port="/dev/ttyAMA0",
@@ -8,6 +14,7 @@ serial_conn = s.Serial(
     stopbits=s.STOPBITS_ONE,
     timeout=10,
 )
+# serial_conn_lock = Lock()
 
 def read_serial() -> str:
     """
@@ -15,13 +22,18 @@ def read_serial() -> str:
     Returns:
         str: 读取到的数据
     """
+    # serial_conn_lock.acquire()
+    data = ""
+
     try:
         data = serial_conn.readline().decode('utf-8').strip()
-        return data
     except s.SerialException as e:
-        return ""
+        pass
     except UnicodeDecodeError as e:
-        return ""
+        pass
+
+    # serial_conn_lock.release()
+    return data
 
 def write_serial(data: str) -> bool:
     """
@@ -31,10 +43,16 @@ def write_serial(data: str) -> bool:
     Returns:
         bool: 是否成功发送
     """
+    result = False
+    # serial_conn_lock.acquire()
+
     try:
         serial_conn.write(data.encode('utf-8'))
-        return True
+        result = True
     except s.SerialException as e:
-        return False
+        pass
+    
+    # serial_conn_lock.release()
+    return result
 
 __all__ = ["read_serial", "write_serial", ]
