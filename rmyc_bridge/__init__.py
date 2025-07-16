@@ -1,7 +1,14 @@
+import time
 import threading as t
 
 from . import serial
 from . import sdk
+
+from .blaster import *
+from .chassis import *
+from .game_msg import *
+from .gimbal import *
+from .robot import *
 
 def main_loop() -> None:
     sdk.enter_sdk_mode()
@@ -9,7 +16,10 @@ def main_loop() -> None:
     while True:
         data = serial.read_serial()
 
-
+        if data.startswith("game msg push"):
+            process(data)
+        
+        time.sleep(0.5)
 
     sdk.exit_sdk_mode()
 
