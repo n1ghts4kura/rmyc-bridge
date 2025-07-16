@@ -13,13 +13,16 @@ from .robot import *
 def main_loop() -> None:
     sdk.enter_sdk_mode()
     
-    while True:
-        data = serial.read_serial()
+    try:
+        while True:
+            data = serial.read_serial()
 
-        if data.startswith("game msg push"):
-            process(data)
+            if data.startswith("game msg push"):
+                process(data)
         
-        time.sleep(0.5)
+            time.sleep(0.5)
+    except:
+        pass
 
     sdk.exit_sdk_mode()
 
