@@ -44,9 +44,9 @@ def chassis_move(distance_x: float, distance_y: float, degree_z: int | None, spe
     """
     控制底盘移动指定距离
     Args:
-        distance_x (float): X轴移动距离，单位米，范围[-5, 5]
-        distance_y (float): Y轴移动距离，单位米，范围[-5, 5]
-        degree_z (int):     Z轴旋转角度，单位度，范围[-1800, 1800] (°)
+        distance_x (float): X轴移动距离，        范围[-5, 5] (m)
+        distance_y (float): Y轴移动距离，        范围[-5, 5] (m)
+        degree_z (int):     Z轴旋转角度，        范围[-1800, 1800] (°)
         speed_xy (float):   XY平面移动速度，     范围(0, 3.5] (m/s)
         speed_z (float):    Z轴旋转速度，        范围(0, 600] (°/s)
     Raises:
